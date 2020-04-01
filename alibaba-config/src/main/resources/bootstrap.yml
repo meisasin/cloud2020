@@ -1,0 +1,25 @@
+server:
+  port: 8868
+
+spring:
+  application:
+    name: alibaba-config-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost  # 配置 nacos 地址
+
+      config:
+        server-addr: 192.168.31.191:8848  # 配置 config 地址
+        file-extension: yaml         # 指定 yaml 格式的配置
+        ext-config:
+          - dataId: global.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'

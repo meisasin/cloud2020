@@ -1,0 +1,17 @@
+server:
+  port: 10002
+
+spring:
+  application:
+    name: cloud-register-bak-service
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+  client:
+    # 表示不向注册中心注册自己
+    register-with-eureka: false
+    # false 表示自己端就是注册中心，我的职责是维护服务实例，并不需要去检索服务
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:10001/eureka
