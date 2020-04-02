@@ -22,6 +22,12 @@
         <module>alibaba-consumer</module>
         <module>alibaba-config</module>
         <module>alibaba-sentinel</module>
+        <module>alibaba-cloud-stream-provider</module>
+        <module>alibaba-cloud-stream-consumer</module>
+        <module>alibaba-seata-order</module>
+        <module>alibaba-seata-storage</module>
+        <module>alibaba-seata-account</module>
+        <module>alibaba-seata-business</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -47,6 +53,21 @@
             <dependency>
                 <groupId>net.yisasin.springcloud</groupId>
                 <artifactId>common</artifactId>
+                <version>${model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.yisasin.springcloud</groupId>
+                <artifactId>alibaba-seata-storage</artifactId>
+                <version>${model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.yisasin.springcloud</groupId>
+                <artifactId>alibaba-seata-account</artifactId>
+                <version>${model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.yisasin.springcloud</groupId>
+                <artifactId>alibaba-seata-order</artifactId>
                 <version>${model.version}</version>
             </dependency>
             <!-- model end -->

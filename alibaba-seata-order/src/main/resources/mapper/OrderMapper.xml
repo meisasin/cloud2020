@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.yisasin.alibaba.seata.dao.OrderDao">
+
+
+    <insert id="insert" parameterType="net.yisasin.alibaba.seata.entity.Order" useGeneratedKeys="true" keyColumn="id">
+        INSERT INTO order_tbl(user_id, commodity_code, count, money) VALUES(#{userId}, #{commodityCode}, #{count}, #{money})
+    </insert>
+
+
+</mapper>

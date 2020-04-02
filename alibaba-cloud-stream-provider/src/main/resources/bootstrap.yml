@@ -1,0 +1,46 @@
+server:
+  port: 10001
+
+spring:
+  application:
+    name: alibaba-cloud-stream-provider-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:1111  # 配置 nacos 地址
+      config:
+        server-addr: localhost:1111  # 配置 config 地址
+        file-extension: yaml         # 指定 yaml 格式的配置
+        ext-config:
+          - dataId: global.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+    sentinel:
+      transport:
+        # 配置 Sentinel dashboard 地址
+        dashboard: localhost:8080
+        # 默认 8719 端口，假如被占用会自动从 8719 开始依次 +1 扫描，直至找到未被占用的端口
+        port: 8719
+    stream:
+      binders:          # 在此处配置要绑定的 rabbitmq 的服务信息
+        defaultRabbit:  # 表示定义的名称，用于 binding 整合
+          type: rabbit  # 消息组件类型
+          environment:  # 指定 rabbitmq 的相关的环境配置
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+      bindings: # 服务的整合处理
+        outputa: # 这个名字是一个通道的名称
+          destination: studyExchange # 表示要使用的 Exchange 名称定义
+          contentType: application/json # 设置消息类型，本次为 json, 文本设置 "text/plain"
+          binder: defaultRabbit # 设置要绑定的消息服务的具体设置
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'

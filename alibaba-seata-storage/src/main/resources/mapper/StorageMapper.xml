@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.yisasin.alibaba.seata.dao.StorageDao">
+
+    <!-- 通用查询映射结果 -->
+
+
+    <update id="deduct">
+        UPDATE storage_tbl SET count = count - #{count} WHERE commodity_code = #{commodityCode}
+    </update>
+
+    <select id="listGlobal" resultType="net.yisasin.springcloud.common.model.GlobalTable">
+        SELECT * FROM global_table
+    </select>
+
+    <select id="listBranch" resultType="net.yisasin.springcloud.common.model.BranchTable">
+        SELECT * FROM branch_table
+    </select>
+
+    <select id="listLock" resultType="net.yisasin.springcloud.common.model.LockTable">
+        SELECT * FROM lock_table
+    </select>
+
+    <select id="listUndolog" resultType="net.yisasin.springcloud.common.model.UndoLog">
+        SELECT * FROM undo_log
+    </select>
+</mapper>
