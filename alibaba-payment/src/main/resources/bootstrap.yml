@@ -27,6 +27,7 @@ spring:
     redisson:
       config: classpath:redisson.json
 
+
 management:
   endpoints:
     web:

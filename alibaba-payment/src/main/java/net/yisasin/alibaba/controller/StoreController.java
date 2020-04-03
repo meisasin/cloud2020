@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
@@ -37,16 +38,19 @@ public class StoreController {
     }
 
     @GetMapping("/consumer")
-    public CommonResult consumer() {
+    public CommonResult consumer() throws InterruptedException {
 
         if (true) {
             throw new RuntimeException("Ha ha ha ..." + UUID.randomUUID().toString());
         }
         RLock rLock = redissonClient.getLock(STORE_LOCK);
 
+        // 加锁
+        boolean isLock = rLock.tryLock(30, TimeUnit.SECONDS);
+        if (!isLock) {
+            return CommonResult.error("Don't got lock.");
+        }
         try {
-            // 加锁
-            rLock.lock();
 
             RBucket<Integer> bucket = redissonClient.getBucket(STORE_KEY);
             Integer number = bucket.get();

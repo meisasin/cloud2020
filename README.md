@@ -20,6 +20,7 @@ Spring cloud 2020 版本学习
         - cloud-eureka:         10002
         - cloud-consumer:       9001
         - cloud-feign-consumer: 9010
+        - cloud-event:          11111
         
         ### Consul 实现
         - consul-payment:      7001
@@ -41,4 +42,6 @@ Spring cloud 2020 版本学习
         - alibaba-seata-storage:    20002
         - alibaba-seata-account:    20002
         - alibaba-seata-business:   20004
-
+        
+        ### Spring boot + redisson
+        - boot-redisson:            16380
