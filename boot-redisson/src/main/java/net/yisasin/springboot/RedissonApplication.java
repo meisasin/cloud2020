@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -21,6 +22,7 @@ public class RedissonApplication {
 
     private static final String STORE_LOCK = "STORE_LOCK";
     private static final String STORE_KEY = "STORE_KEY";
+
     @Autowired
     private RedissonClient redissonClient;
 
@@ -38,6 +40,8 @@ public class RedissonApplication {
      */
     @GetMapping("/set/{key}/{value}")
     public CommonResult set(@PathVariable("key") String key, @PathVariable("value") Integer value) {
+        log.info(" <<< RedissonApplication set >>>");
+
         RBucket<Integer> bucket = redissonClient.getBucket(key);
 
         Integer andSet = bucket.getAndSet(value);
@@ -48,12 +52,13 @@ public class RedissonApplication {
 
     /**
      * 取值
-     * @param key
      * @return
      */
-    @GetMapping("/get/{key}")
-    public CommonResult get(@PathVariable("key") String key) {
-        RBucket<Integer> bucket = redissonClient.getBucket(key);
+    @GetMapping("/get")
+    public CommonResult get() {
+
+        log.info(" <<< RedissonApplication get >>>");
+        RBucket<Integer> bucket = redissonClient.getBucket(STORE_KEY);
 
         Integer value = bucket.get();
 
@@ -67,6 +72,8 @@ public class RedissonApplication {
      */
     @GetMapping("/consumer")
     public CommonResult consumer() throws InterruptedException {
+
+        log.info(" <<< RedissonApplication consumer >>>");
 
         RLock rLock = redissonClient.getLock(STORE_LOCK);
         // 加锁

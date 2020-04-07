@@ -8,4 +8,7 @@ spring:
     host: localhost
     port: 6379
     redisson:
-      config: classpath:redisson.json
+      active: true
+      # redisson 的模式 --> single: 单节点[redisson.yml]  cluster: 集群[redisson-cluster.yml]
+      # 如果需要切换集群模式，请在 resources 目录下配置 redisson-cluster.yml，配置文件参考[@https://github.com/redisson/redisson/wiki/2.-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95#242-%E9%80%9A%E8%BF%87jsonyaml%E5%92%8Cspring-xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F]
+      model: single
