@@ -11,8 +11,6 @@
 
     <artifactId>cloud-event</artifactId>
 
-
-
     <dependencies>
         <dependency>
             <groupId>net.yisasin.springcloud</groupId>
